@@ -13,6 +13,7 @@ import Image from "next/image";
 import { LogOutIcon, User2Icon } from "lucide-react";
 import { useRouter } from "next/router";
 import { Auth } from "firebase/auth";
+import { auth } from "@/lib/firebase/init";
 // import { useQuery } from "@tanstack/react-query";
 // import { makeGetRequest } from "@/lib/queryFunctions";
 type ProfileProps = {
@@ -48,6 +49,13 @@ function Profile({ signOut, userId }: ProfileProps) {
           height={40}
           alt="profile image of user"
         /> */}
+        <Image
+          className="rounded-full transition-all hover:shadow-md hover:shadow-slate-500"
+          src={"/images/dummy-user.jpg"}
+          width={40}
+          height={40}
+          alt="profile image of user"
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -67,7 +75,7 @@ function Profile({ signOut, userId }: ProfileProps) {
 
         <DropdownMenuItem
           className="focus:border-2 focus:border-blue-400"
-          onClick={() => signOut}
+          onClick={() => signOut(auth)}
         >
           Log out
           <DropdownMenuShortcut>

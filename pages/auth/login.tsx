@@ -33,7 +33,9 @@ export default function LoginPage(): JSX.Element {
           data.userEmail,
           data.userPwd
         );
-        console.log(fbResp);
+        if (fbResp.user) {
+          router.push("/events");
+        }
       } catch (error) {
         console.log(error);
         if (error instanceof FirebaseError) {
