@@ -5,9 +5,11 @@ import {
   KeyRoundIcon,
   LockIcon,
   PackagePlusIcon,
+  PenIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,
   StoreIcon,
+  TelescopeIcon,
 } from "lucide-react";
 import useAuth from "@/hooks/useAuth";
 import HamburgerSlider from "./drawer/HamBurgerSlider";
@@ -24,7 +26,7 @@ const MainNavBar = (): JSX.Element => {
           {userIsAuthenticated && (
             <li className="nav-btn">
               <Link className="nav-btn-link" href={"/events"}>
-                Browse Events <ShoppingBagIcon className="ml-4" />
+                Browse Events <TelescopeIcon className="ml-4" />
               </Link>
             </li>
           )}
@@ -46,7 +48,7 @@ const MainNavBar = (): JSX.Element => {
           {userIsAuthenticated && (
             <li className="nav-btn">
               <Link className="nav-btn-link" href={"/events/create"}>
-                Create Event <ShoppingCartIcon className="ml-4" />
+                Create Event <PenIcon className="ml-4" />
               </Link>
             </li>
           )}
