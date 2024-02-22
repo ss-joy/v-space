@@ -8,7 +8,7 @@ const outfit = Outfit({
 });
 const MainHeader = (): JSX.Element => {
   return (
-    <header className="flex justify-between items-center p-2 sm:px-4 md:px-8 2xl:px-10">
+    <header className="flex justify-between items-center p-2 sm:px-4 sm:pt-8 md:px-8 2xl:px-10">
       <div className="flex items-center">
         <Link
           href={"/"}
