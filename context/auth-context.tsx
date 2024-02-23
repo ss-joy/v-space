@@ -24,7 +24,7 @@ export default function AuthContextProvider({
       setUserIsAuthenticated(false);
     }
   });
-  console.log({ userId, userIsAuthenticated });
+  // console.log({ userId, userIsAuthenticated });
   return (
     <AuthConext.Provider
       value={{

@@ -15,7 +15,7 @@ type EventItemProp = {
 };
 
 function EventItem({
-  eventItem: { date, description, image, time, title, visibility, eventId },
+  eventItem: { date, image, time, title, visibility, eventId },
 }: EventItemProp) {
   console.log(date);
   return (
