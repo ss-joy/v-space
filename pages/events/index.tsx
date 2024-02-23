@@ -39,7 +39,7 @@ export default function EventsPage() {
   if (loading) {
     return (
       <p className="text-slate-500 font-bold text-5xl mt-4 p-3 mx-auto w-[300px] sm:w-auto text-center">
-        getting all events...
+        Getting all events...
       </p>
     );
   }

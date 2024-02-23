@@ -9,6 +9,7 @@ import {
 import { CopyIcon, Share2Icon } from "lucide-react";
 import { copyText } from "@/lib/utils";
 import { Toaster } from "sonner";
+import Link from "next/link";
 
 type EventItemProp = {
   eventItem: EventType;
@@ -35,7 +36,7 @@ function EventItem({
         </p>
         <div className="flex justify-between">
           <Button className="bg-purple-200 text-purple-800 hover:bg-purple-400 hover:text-white">
-            See details
+            <Link href={`/events/${eventId}`}>See details</Link>
           </Button>
           <Popover>
             <PopoverTrigger>
