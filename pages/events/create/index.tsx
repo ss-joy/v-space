@@ -229,7 +229,7 @@ export default function CreateEventPage(): JSX.Element {
           className="btn2 disabled:bg-gray-500 mt-4"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Signing you up.." : "Sign Up"}
+          {isSubmitting ? "Creating event.." : "Create event"}
         </button>
       </form>
       <Toaster richColors closeButton theme="light" />
