@@ -6,12 +6,14 @@ import { EventType } from ".";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { convertTo12Hour, cutOutFirst100Words } from "@/lib/utils";
+import Link from "next/link";
 
 export default function SingleEventDetailsPage(): JSX.Element {
   const router = useRouter();
   const [event, setEvent] = useState<EventType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [showFullText, setShowFullText] = useState<boolean>(false);
+
   useEffect(() => {
     let unsub: Unsubscribe = () => {};
     if (router.query.eventId) {
@@ -29,8 +31,7 @@ export default function SingleEventDetailsPage(): JSX.Element {
       unsub();
     };
   }, [router.query.eventId]);
-  console.log({ loading });
-  console.log(router.query.eventId);
+
   if (!event && loading) {
     return (
       <p className="text-slate-500 font-bold text-5xl mt-4 p-3 mx-auto w-[300px] sm:w-auto text-center">
@@ -39,8 +40,8 @@ export default function SingleEventDetailsPage(): JSX.Element {
     );
   }
   return (
-    <main className="border-2  border-blue-700 flex flex-col lg:w-[1400px] lg:mt-10 lg:flex-row lg:justify-between lg:items-start mx-auto">
-      <article className="border-2 border-red-700 mt-6 p-2 max-w-[900px]">
+    <main className="flex flex-col lg:w-[1400px] lg:mt-10 lg:flex-row lg:justify-between lg:items-start mx-auto">
+      <article className="mt-6 p-2 max-w-[900px]">
         <Image
           src={event?.image as string}
           alt={event?.title as string}
@@ -48,7 +49,9 @@ export default function SingleEventDetailsPage(): JSX.Element {
           height={500}
           className="block mx-auto w-full rounded"
         />
-
+        <h1 className="mt-4 p-2  lg:px-6 font-bold text-4xl text-slate-700">
+          {event?.title}
+        </h1>
         <p className="mt-4 p-2 text-slate-800 lg:px-6">
           {showFullText
             ? event?.description
@@ -65,14 +68,25 @@ export default function SingleEventDetailsPage(): JSX.Element {
           {showFullText ? "Show less" : "Show more"}
         </Button>
       </article>
-      <div className="bg-purple-100 max-w-[300px] p-3 rounded-lg shadow-md lg:m-7">
-        <p className="flex justify-between mb-2 text-violet-800 font-bold text-3xl">
-          <span>On</span>
-          <span>{new Date(Number(event?.date)).toLocaleDateString()}</span>
+      <div className="max-w-[300px] shadow-md lg:m-7 p-3">
+        <div className="bg-purple-100 p-3 rounded-lg">
+          <p className="flex justify-between mb-2 text-violet-800 font-bold lg:text-3xl">
+            <span>On</span>
+            <span>{new Date(Number(event?.date)).toLocaleDateString()}</span>
+          </p>
+          <p className="text-violet-800 font-bold lg:text-3xl">
+            @{convertTo12Hour(event?.time as string)}
+          </p>
+        </div>
+        <p className="text-violet-800 my-4">
+          Wanna find out what others are thinking?
         </p>
-        <p className="text-violet-800 font-bold text-3xl">
-          @{convertTo12Hour(event?.time as string)}
-        </p>
+        <Link
+          className="bg-violet-100 font-bold text-center block p-3 rounded hover:bg-purple-300 hover:text-white"
+          href={`/events/messages/${router.query.eventId}`}
+        >
+          Join rooms!
+        </Link>
       </div>
     </main>
   );
